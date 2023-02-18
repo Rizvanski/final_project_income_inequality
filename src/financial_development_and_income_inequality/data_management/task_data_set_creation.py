@@ -18,7 +18,7 @@ from financial_development_and_income_inequality.data_management.data_set_creati
 # output data set
 @pytask.mark.produces(
     [
-        BLD / "data" / "python" / "initial_data_set.pkl",
+        BLD / "data" / "initial_data_set.pkl",
         SRC / "data" / "initial_data_set.pkl",
     ],
 )

@@ -12,9 +12,10 @@ from financial_development_and_income_inequality.data_management.data_set_creati
 )
 
 
+# input directory
 @pytask.mark.depends_on(SRC / "data" / "data_initial_files/")
 
-# output files
+# output data set
 @pytask.mark.produces(
     [
         BLD / "data" / "python" / "initial_data_set.pkl",

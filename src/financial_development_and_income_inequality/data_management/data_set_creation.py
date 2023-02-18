@@ -115,6 +115,7 @@ def store_labor_costs(dataframe, data_dir):
     return dataframe
 
 
+### Deposit liabilities for domestic, foreign banks ###
 ### monthly measured values in billion Euros ###
 ### mean for three consecutive months is taken ###
 

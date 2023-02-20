@@ -1,5 +1,6 @@
 """Tasks for managing the creation of the outcome and explanatory variables for the data
-set."""
+set.
+"""
 
 ### packages ###
 
@@ -33,7 +34,7 @@ target_col = "fin"
 
 # output data set
 @pytask.mark.produces(
-    BLD / "data" / "final_data_set.pkl",
+    BLD / "python" / "data" / "final_data_set.pkl",
 )
 
 # function

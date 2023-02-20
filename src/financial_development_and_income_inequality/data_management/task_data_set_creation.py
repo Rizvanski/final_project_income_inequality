@@ -18,12 +18,12 @@ from financial_development_and_income_inequality.data_management.data_set_creati
 # output data set
 @pytask.mark.produces(
     [
-        BLD / "data" / "initial_data_set.pkl",
+        BLD / "python" / "data" / "initial_data_set.pkl",
         SRC / "data" / "initial_data_set.pkl",
     ],
 )
 def task_create_initial_data_set(depends_on, produces):
-    """Creates the initial data set, using the function data_creation.
+    """Creates and stores the initial data set, using the function data_creation.
 
     Parameters:
     depends_on (pathlib.Path): The path to the directory where the initial data files are located.

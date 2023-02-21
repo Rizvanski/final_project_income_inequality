@@ -7,7 +7,7 @@ set.
 import pandas as pd
 import pytask
 
-## folders and function used for creating data set ##
+### folders and function used for creating data set ###
 from financial_development_and_income_inequality.config import BLD, SRC
 from financial_development_and_income_inequality.data_management.data_set_management import (
     generate_variables,
@@ -20,8 +20,8 @@ sectors_percentage_increase_calculation = [
     ("fin", "lcph_fin"),  # financial sector
     ("all", "mean_all"),  # all sectors (except finance)
     ("pc", "mean_pr_cst"),  # production and construction sector
-    ("peh", "lcph_pseh"),
-]  # education and health sector
+    ("peh", "lcph_pseh"),  # education and health sector
+]
 
 # used for percentage increase differences calculation
 sectors_percentage_increase_diff = ["all", "pc", "peh"]
@@ -32,7 +32,7 @@ target_col = "fin"
 # input directory
 @pytask.mark.depends_on(SRC / "data" / "initial_data_set.pkl")
 
-# output data set
+# output directory
 @pytask.mark.produces(
     BLD / "python" / "data" / "final_data_set.pkl",
 )

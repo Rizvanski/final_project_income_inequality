@@ -1,8 +1,6 @@
 ####################################### Data Set Creation #######################################
 
-### this is the initial notebook file with which the data set is created ###
-### the csv data_dir loaded into this file are stored in the Data Sources folder ###
-### once finished the created data set is stored in the Clean Data folder ###
+### data_dir indicates the directory where the initial data files are located ###
 
 ### packages ###
 

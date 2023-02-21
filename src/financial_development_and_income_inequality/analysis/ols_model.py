@@ -60,7 +60,7 @@ def fit_ols_model(X, ys, control_vars):
     return models
 
 
-# function used for baseline regressions
+# function used for running baseline regressions
 def run_ols_model(data):
     """Runs multiple OLS regression models with specified outcome, explanatory and
     control variables and gets results from the respective models.

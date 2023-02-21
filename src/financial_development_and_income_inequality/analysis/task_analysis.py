@@ -1,47 +1,63 @@
-"""Tasks running the core analyses."""
+"""Tasks used for saving the results from the core analyses of the OLS_model and time
+fixed effects model.
+"""
+
+### packages ###
+import pickle
 
 import pandas as pd
 import pytask
 
-from financial_development_and_income_inequality.analysis.model import fit_logit_model, load_model
-from financial_development_and_income_inequality.analysis.predict import predict_prob_by_age
-from financial_development_and_income_inequality.config import BLD, GROUPS, SRC
-from financial_development_and_income_inequality.utilities import read_yaml
-
-
-@pytask.mark.depends_on(
-    {
-        "scripts": ["model.py", "predict.py"],
-        "data": BLD / "python" / "data" / "data_clean.csv",
-        "data_info": SRC / "data_management" / "data_info.yaml",
-    },
+from financial_development_and_income_inequality.analysis.fixed_effects_model import (
+    run_fixed_effects_model,
+    run_fixed_effects_model_robust,
 )
-@pytask.mark.produces(BLD / "python" / "models" / "model.pickle")
-def task_fit_model_python(depends_on, produces):
-    """Fit a logistic regression model (Python version)."""
-    data_info = read_yaml(depends_on["data_info"])
-    data = pd.read_csv(depends_on["data"])
-    model = fit_logit_model(data, data_info, model_type="linear")
-    model.save(produces)
+from financial_development_and_income_inequality.analysis.ols_model import (
+    run_ols_model,
+    run_ols_model_robust,
+)
+
+## folder and functions used for storing the results ##
+from financial_development_and_income_inequality.config import BLD
 
 
-for group in GROUPS:
+# input directory
+@pytask.mark.depends_on(BLD / "data" / "final_data_set.pkl")
 
-    kwargs = {
-        "group": group,
-        "produces": BLD / "python" / "predictions" / f"{group}.csv",
+# output directory
+@pytask.mark.produces(
+    [
+        BLD / "python" / "models" / "ols_model_estimates.pkl",
+        BLD / "python" / "models" / "fixed_effects_model_estimates.pkl",
+    ],
+)
+def task_store_model_estimates(depends_on, produces):
+    """Stores the model estimates in a pickle format. The estimates for both the ols
+    model and fixed effects model are stored in two separate pickle files.
+
+    Parameters:
+    depends_on (pathlib.Path): The path to the directory where the data set is stored.
+    produces (pathlib.Path): The paths to the estimates pickle files.
+
+    Returns:
+    None
+
+    """
+    # loading final_data_set
+    data = pd.read_pickle(depends_on)
+    # OlS model statistics
+    ols_model_estimates = {
+        "ols_model_estimates": run_ols_model(data),
+        "ols_model_estimates_robust_checks": run_ols_model_robust(data),
     }
-
-    @pytask.mark.depends_on(
-        {
-            "data": BLD / "python" / "data" / "data_clean.csv",
-            "model": BLD / "python" / "models" / "model.pickle",
-        },
-    )
-    @pytask.mark.task(id=group, kwargs=kwargs)
-    def task_predict_python(depends_on, group, produces):
-        """Predict based on the model estimates (Python version)."""
-        model = load_model(depends_on["model"])
-        data = pd.read_csv(depends_on["data"])
-        predicted_prob = predict_prob_by_age(data, model, group)
-        predicted_prob.to_csv(produces, index=False)
+    # Fixed effects model statistics
+    fixed_effects_model_estimates = {
+        "fixed_effects_model_estimates": run_fixed_effects_model(data),
+        "fixed_effects_model_estimates_robust_checks": run_fixed_effects_model_robust(
+            data,
+        ),
+    }
+    with open(produces[0], "wb") as f:
+        pickle.dump(ols_model_estimates, f)
+    with open(produces[1], "wb") as f:
+        pickle.dump(fixed_effects_model_estimates, f)

@@ -15,7 +15,7 @@ from financial_development_and_income_inequality.data_management.data_set_creati
 # input directory
 @pytask.mark.depends_on(SRC / "data" / "data_initial_files/")
 
-# output data set
+# output directory
 @pytask.mark.produces(
     [
         BLD / "python" / "data" / "initial_data_set.pkl",

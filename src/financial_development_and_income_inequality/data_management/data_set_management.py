@@ -1,9 +1,7 @@
 ############# Creating Outcome and Explanatory Variables #############
 
-### after creating the data set with the python file "data_set_creation", ###
+### after creating the data set with the python file "data_set_creation" ###
 ### here the outcome and explanatory variables are generated ###
-
-# packages
 
 # function for generating the outcome and explanatory variables
 def generate_variables(

@@ -3,7 +3,7 @@
 ### financial development on income inequality ###
 
 
-# packages used
+### packages ###
 import numpy as np
 import pandas as pd
 from sklearn.impute import SimpleImputer

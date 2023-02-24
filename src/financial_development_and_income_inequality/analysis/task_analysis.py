@@ -21,7 +21,7 @@ from financial_development_and_income_inequality.config import BLD
 
 
 # input directory
-@pytask.mark.depends_on(BLD / "data" / "final_data_set.pkl")
+@pytask.mark.depends_on(BLD / "python" / "data" / "final_data_set.pkl")
 
 # output directory
 @pytask.mark.produces(

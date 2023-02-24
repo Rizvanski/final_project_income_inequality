@@ -8,6 +8,7 @@ import pickle
 import pandas as pd
 import pytask
 
+### functions and folders used for the task file ###
 from financial_development_and_income_inequality.analysis.fixed_effects_model import (
     run_fixed_effects_model,
     run_fixed_effects_model_robust,
@@ -16,8 +17,6 @@ from financial_development_and_income_inequality.analysis.ols_model import (
     run_ols_model,
     run_ols_model_robust,
 )
-
-## folder and functions used for storing the results ##
 from financial_development_and_income_inequality.config import BLD
 
 

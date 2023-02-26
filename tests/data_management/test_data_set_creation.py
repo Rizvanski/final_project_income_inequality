@@ -1,5 +1,4 @@
-####################################### Tests for data_set_creation.py #######################################
-### these tests are conducted on the functions located    ###
+"""Tests conducted on the functions that generate the initial data set."""
 
 ### packages ###
 import glob
@@ -8,7 +7,7 @@ import os
 import pandas as pd
 import pytest
 
-### folder and function indicating the directory of initial data files ###
+### folder containing the directory of initial data files ###
 from financial_development_and_income_inequality.config import SRC
 
 ### functions tested ###
@@ -16,9 +15,12 @@ from financial_development_and_income_inequality.data_management.data_set_creati
     load_csv_data_deposits,
     load_csv_data_labor_costs,
 )
+
+# test related packages
 from pandas.testing import assert_series_equal
 
 
+### path to the directory containing the initial data files ###
 @pytest.fixture()
 def directory_initial_data_files():
     data_initial_files = SRC / "data" / "data_initial_files"
@@ -48,10 +50,10 @@ def test_length_variables(directory_initial_data_files):
 
 ### checking for numeric format in the values of the variables ###
 
-# test for numeric values
+# test for numeric format values
 def test_numeric_values(directory_initial_data_files):
     """
-    Tests whether the values of each variable are numerical (float).
+    Tests whether the values of each variable are numerical (float64).
     """
     # calling the csv files used in the function
     fileitems = glob.glob(str(directory_initial_data_files / "BBNZ1.Q.DE.N.H.09*.A"))
@@ -73,10 +75,11 @@ def test_numeric_values(directory_initial_data_files):
 ### the values are matched and tested                         ###
 
 # test for matching expected and actual results (BDAC)
-def test_expected_values(directory_initial_data_files):
+def test_expected_values_all_categories(directory_initial_data_files):
     """
-    Tests whether the mean values are calculated correctly. On the left hand side, we have the results for randomly chosen years,
-    given from the function, whereas on the right hand side we have the corresponding values which are calculated manually.
+    Tests whether the mean values are calculated correctly for deposits of all categories of banks. On the left hand side, we have
+    the results for randomly chosen years, given from the function, whereas on the right hand side we have the corresponding
+    values which are calculated manually.
     """
     results1 = pd.Series(
         load_csv_data_deposits(
@@ -106,10 +109,11 @@ def test_expected_values(directory_initial_data_files):
 
 
 # test for matching expected and actual results (BDFB)
-def test_expected_values1(directory_initial_data_files):
+def test_expected_values_foreign_banks(directory_initial_data_files):
     """
-    Tests whether the mean values are calculated correctly. Using assert_series_equal and pd.Series, the mean values obtained from the
-    function for randomly selected years are tested and matched with manually calculated corresponding values.
+    Tests whether the mean values are calculated correctly for deposits of foreign banks. Using assert_series_equal
+    and pd.Series, the mean values obtained from the function for randomly selected years are tested and matched with
+    manually calculated corresponding values.
     """
     results2 = pd.Series(
         load_csv_data_deposits(

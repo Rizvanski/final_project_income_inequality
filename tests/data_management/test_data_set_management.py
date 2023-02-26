@@ -1,13 +1,14 @@
-####################################### Tests for data_set.management.py #######################################
-### these test are conducted on the functions located ###
-### one test is intentionally marked as xfailed ###
+"""Tests for data set management where the explanatory and outcome variables are generated."""
+
+### these test are conducted on the functions meant ###
+### for generating the explanatory and outcome variables ###
 
 ### packages ###
 import numpy as np
 import pandas as pd
 import pytest
 
-### folder and function used for creating the finalized version of the data set ###
+### folder used for creating the finalized version of the data set ###
 from financial_development_and_income_inequality.config import SRC
 
 ### functions tested ###
@@ -40,7 +41,9 @@ def data():
 
 
 ###             tests for outcome variables                             ###
+
 ### checking whether the labor cost percentage increase for financial   ###
+### sector is larger the the rest of the sectors                        ###
 
 ### this test is done by assuming that the generated outcome variables  ###
 ### are positive                                                        ###
@@ -48,8 +51,8 @@ def data():
 # test for percentage increase differences
 def test_percentage_increase_differences(data):
     """
-    Test whether the labor cost percentage increase in the financial sector is larger than
-    the rest of the sectors (all (except finance), production and construction and education and finance)
+    Tests whether the labor cost percentage increase in the financial sector is larger than
+    the rest of the sectors (all (except finance), production and construction and education and health)
     in the economy.
     """
     results = percentage_increase_differences(
@@ -58,13 +61,8 @@ def test_percentage_increase_differences(data):
         target_col,
     )
     assert (
-        np.array(
-            results.loc[60:120, ["fin_diff_all", "fin_diff_pc", "fin_diff_peh"]],
-        ).all()
-        > 0
-    ) is True, (
-        "sign of fin_diff_all, fin_diff_pc and fin_diff_peh does not match expectation"
-    )
+        np.array(results.loc[60:120, ["fin_diff_all", "fin_diff_pc", "fin_diff_peh"]])
+    ).all() > 0, "labor cost percentage increase in financial sector is not larger when compared with the other sectors in the economy"
 
 
 # deliberately failing the test (using different time periods), then making it pass
@@ -72,7 +70,7 @@ def test_percentage_increase_differences(data):
 # @pytest.mark.xfail()
 def test_percentage_increase_differences_fail(data):
     """
-    Test whether the labor cost percentage increase in the financial sector is larger than
+    Tests whether the labor cost percentage increase in the financial sector is larger than
     the rest of the sectors (all (except finance), production and construction and education and finance)
     in the economy, for different periods.
     """
@@ -94,16 +92,16 @@ def test_percentage_increase_differences_fail(data):
                 results1.loc[20:40, ["fin_diff_all", "fin_diff_pc", "fin_diff_peh"]],
             ).all()
             > 0
-        ) is False, "Expected True but False is indicated"
+        ) is False
 
 
 ### checking whether the leads from the outcome variables are properly generated ###
-### for all quarters in year 1991 there should only be NaN values                ###
+### for all quarters in year 2020 NaN values are expected                        ###
 
 # test for leads from outcome variables
 def test_create_lead_variables(data):
     """
-    Test whether the values for the generated outcome variables are NaN in the last four quarters of 1991.
+    Tests whether the values for the generated outcome variables are NaN in the last four quarters of 1991.
     """
     results2 = create_lead_variables(data)
     actual_values = np.array(
@@ -121,23 +119,19 @@ def test_create_lead_variables(data):
 ###               test for explanatory variables                                ###
 ### checking whether the financial development variables are generated properly ###
 
-### given that the share of deposits of foreign banks is much smaller, when     ###
-### compared with deposits of domestic banks, it is expected that financial     ###
+### given that the share of deposits from domestic banks is much larger, when          ###
+### compared with deposits of foreign banks, the variable is expected to be larger     ###
 
 
-# test for size of financial development variables (fin_dev_fb and fin_dev_db)
-# deliberately failing the test
-# marking it as failed test
-@pytest.mark.xfail()
+# test for size of financial development variables (fin_dev_db and fin_dev_fb)
 def test_explanatory_variables(data):
     """
-    Test whether the size of the explanatory variables are as expected.
+    Tests whether the size of the explanatory variables are as expected. Financial development
+    contributed to domestic banks variable (fin_dev_db) is expected to be larger.
     """
-    results3 = explanatory_variables(
-        data,
-        data[["BDAC", "BDDB", "BDFB"]],
-        data["GDP_nom"],
-    )
+    # generating the explanatory variables
+    exp_variables = explanatory_variables(data)
+    # testing whether fin_dev_db is larger
     assert (
-        results3.loc[:, "fin_dev_db"] > results3.loc[:, "fin_dev_fb"]
-    ).all() is False, "True expected but False indicated"
+        exp_variables.loc[:, "fin_dev_db"] > exp_variables.loc[:, "fin_dev_fb"]
+    ).all(), "fin_dev_db is not larger than fin_dev_fb in all of its values"

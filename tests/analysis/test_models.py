@@ -1,13 +1,15 @@
-"""Tests for the OLS model."""
+"""Tests for the OLS and time fixed effect models."""
 
 ### packages ###
 import pandas as pd
 import pytest
+
+### time fixed effects model function tested ###
 from financial_development_and_income_inequality.analysis.fixed_effects_model import (
     run_fixed_effects_model,
 )
 
-### functions tested ###
+### OLS model function tested ###
 from financial_development_and_income_inequality.analysis.ols_model import (
     run_ols_model,
     run_ols_model_robust,
@@ -57,7 +59,7 @@ def test_expected_sign_ols(final_data):
 
 
 ### sign of fin_dev_db is expected to be faulty with time fixed effect model ###
-### the number of clusters is 30, which falls under the rule for thumb ###
+### the number of clusters is 30, which does not fulfill the rule for thumb ###
 ### therefore, the model is not applied correctly ###
 
 # marking the test with a decorator

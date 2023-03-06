@@ -2,10 +2,13 @@
 import shutil
 
 import pytask
-from pytask_latex import compilation_steps as cs
 from financial_development_and_income_inequality.config import BLD, PAPER_DIR
+from pytask_latex import compilation_steps as cs
 
-documents = ["financial_development_and_income_inequality", "financial_development_and_income_inequality_pres"]
+documents = [
+    "financial_development_and_income_inequality",
+    "financial_development_and_income_inequality_pres",
+]
 
 for document in documents:
 

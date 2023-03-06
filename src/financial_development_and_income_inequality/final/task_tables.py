@@ -42,10 +42,10 @@ row_names = [
 # output files
 @pytask.mark.produces(
     [
-        BLD / "python" / "tables" / "ols_baseline.txt",
-        BLD / "python" / "tables" / "ols_robustness_checks.txt",
-        BLD / "python" / "tables" / "fixed_effects_baseline.txt",
-        BLD / "python" / "tables" / "fixed_effects_robustness_checks.txt",
+        BLD / "python" / "tables" / "ols_baseline.csv",
+        BLD / "python" / "tables" / "ols_robustness_checks.csv",
+        BLD / "python" / "tables" / "fixed_effects_baseline.csv",
+        BLD / "python" / "tables" / "fixed_effects_robustness_checks.csv",
     ],
 )
 def task_generate_tables(depends_on, produces):
@@ -75,7 +75,7 @@ def task_generate_tables(depends_on, produces):
         fixed_effects_estimates,
         row_names,
     )
-    # saving the files in a "txt" format
+    # saving the files in an "csv" format
     outputs = [
         ols_baseline,
         ols_robustness_checks,

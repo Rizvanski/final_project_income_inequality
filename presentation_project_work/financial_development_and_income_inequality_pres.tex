@@ -1,14 +1,16 @@
-\documentclass[11pt, aspectratio=169]{beamer}
+\documentclass[11pt]{beamer}
 % \documentclass[11pt,handout]{beamer}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
-\usepackage{textcomp}
+\usepackage{textcomp,textgreek}
 \usepackage{float, afterpage, rotating, graphicx}
 \usepackage{epstopdf}
 \usepackage{longtable, booktabs, tabularx}
 \usepackage{fancyvrb, moreverb, relsize}
 \usepackage{eurosym, calc}
 \usepackage{amsmath, amssymb, amsfonts, amsthm, bm}
+\usepackage{booktabs}
+
 \usepackage[
     natbib=true,
     bibencoding=inputenc,
@@ -24,6 +26,8 @@
 \AtBeginBibliography{\togglefalse{blx@useprefix}}
 \setlength{\bibitemsep}{1.5ex}
 \addbibresource{refs.bib}
+
+
 
 \hypersetup{colorlinks=true, linkcolor=black, anchorcolor=black, citecolor=black, filecolor=black, menucolor=black, runcolor=black, urlcolor=black}
 
@@ -49,35 +53,168 @@
 \end{frame}
 
 
-\begin{frame}[t]
-    \frametitle{heading here}
-    \begin{itemize}
-        \item<+-> Please cite this template as: \citet{GaudeckerEconProjectTemplates}
-        \item<+-> Example data is taken from \url{https://www.stem.org.uk/resources/elibrary/resource/28452/large-datasets-stats4schools}
-    \end{itemize}
-    \note{~}
+\begin{frame}
+\frametitle{Introduction}
+\begin{itemize}
+ \item<1<+-> This project work examines the effect of financial development on personal income inequality, through the labor market in the German economy between the years 1991 and 2020.
+ \item<2<+-> Starting from the 1980’s, within-country income inequality has substantially increased in many advanced economies.\footnote {\cite{sarfati2009growing}}
+\item<3<+-> It comes as a
+surprise that advanced industrialized economies such as \textbf{Germany} are facing that problem.
+\item<4<+-> These increases of inequality in advanced economies appear to be inconsistent with Kuznets’s inverted-U hypothesis. \footnote{\cite{kunieda2014finance}}
+\item<5<+-> Various factors are being considered as the cause for these trends. One that recently gained a lot of attention is financial development.
+\end{itemize}
 \end{frame}
 
+\begin{frame}
+\frametitle{Introduction}
+\begin{itemize}
+\item<1<+-> Germany is a prime-example for a bank-based system where the majority of the financial assets are kept in forms of deposits. \footnote{\cite{detzer2015inequality}}
+\item<2<+-> Other financial securities markets are still underdeveloped.
+\item<3<+-> \textbf{The German Banking Act} does not put restriction on the conduct of investment and commercial banking. Unlike in the USA \footnote{See Glass-Steagall Act 1933 and Gramm-Leach-Bliley Act 1999.}, banks engaged in investment activities in Germany are allowed to use deposits for making investments.
+\item<4<+-> Financial Development is therefore measured by dividing deposit liabilities by nominal GDP. The construction of this measure is inspired by the work of \textcolor{blue}{\cite{demetriades1996does}}.
+\end{itemize}
+\end{frame}
 
-
-\begin{frame}[t]
-    \begin{figure}[H]
+\begin{frame}
+\frametitle{Introduction (Graphical Representation)}
+    \begin{figure}
 
         \centering
-        \includegraphics[width=0.5\textwidth]{../python/figures/smoking_by_marital_status}
+        \includegraphics[width=0.7\textwidth]{../bld/python/figures/labor_cost_increase.png}
 
-        \caption{\emph{Python:} Model predictions of the smoking probability over the
-            lifetime. Each colored line represents a case where marital status is fixed to
-            one of the values present in the data set.}
-        \label{fig:python-predictions}
+        \caption{\emph{Labor Cost Percentage Increase Across Sectors:} This figure shows the labor cost percentage increase of the financial sector, production and construction sector, education and health sector and all other sectors.}
+        \label{fig:labor}
 
     \end{figure}
 \end{frame}
 
+\begin{frame}
+\frametitle{Introduction (Graphical Representation)}
+    \begin{figure}
 
+        \centering
+        \includegraphics[width=0.7\textwidth]{../bld/python/figures/foreign_banks_presence.png}
 
+        \caption{\emph{Labor Cost Percentage Increase Across Sectors:} This figure shows the labor cost percentage increase of the financial sector, production and construction sector, education and health sector and all other sectors.}
+        \label{fig:foreign_banks_sector}
 
+    \end{figure}
+\end{frame}
 
+\begin{frame}
+\frametitle{Data}
+\begin{itemize}
+\item<1<+-> The data is gathered in the period between 1991 and 2020.
+\item<2<+-> In total, there are 120 observations.
+\item<3<+-> This data set contains quarterly measured values.
+\item<4<+-> Consecutive three month averages are taken for values which are given with monthly values.
+\item<5<+-> In order to avoid possible income distribution differences amongst the former countries (Federal Republic of Germany and German Democratic Republic), the period after the reunification is chosen.
+\item<6<+-> Several sources are used. \footnote{\cite{DeutscheBundesbank,Eurostat,EuropeanCentralBank}}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Data (Outcome Variables)}
+\begin{itemize}
+\item<1<+-> Outcome variables are measured by considering the labor cost percentage increase differences between the financial sector and the rest of the sectors in the economy.
+\item<2<+->Overall employment share of the
+financial sector in Germany is only  4\%, However, 19\% of the financial sector workers are among the top 1\% earners in the economy. \footnote{\cite{denk2015finance}}
+\item<3<+-> Therefore, the extremely large labor cost percentage increases in the financial sector are driven by high earners, which would have an effect on the overall increased income inequality.
+\item<4<+-> Data gathered from \cite{DeutscheBundesbank}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Data (Outcome Variables Calculation)}
+\begin{itemize}
+\item<1<+-> \textbf{Labor cost percentage increase calculation:} \begin{equation}
+y(fin),y(pc), y(ph.),y(all) \footnote {The financial sector, production and construction sector, education and health sector and the rest of the sectors in the economy are considered.} = \frac{(b-a)}{a}*100
+\end{equation}
+\item<2<+-> \textbf{Labor cost percentage increase differences calculation:}
+\begin{equation}
+fin\_diff\_all(pc,ph.) = y(fin) - y(all)(y(pc),y(ph.))
+\end{equation}
+\item<3<+->This set of outcome variables is used to test the possible effect of financial development on income inequality through the labor market.
+\item<4<+->Differences between the financial sector, production and construction sector, education and health sector and the rest of the sectors in the economy are taken into consideration.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Data (Main Explanatory Variables)}
+\begin{itemize}
+\item<1<+-> Main explanatory variables are generated by dividing deposit liabilities by nominal GDP.
+\item<2<+-> Deposits from domestic and foreign banks are taken into consideration.
+\item<3<+-> In total we have three main explanatory variables:
+\item<4<+-> Overall Financial Development, Financial Development Contributed to Domestic Banks and Financial Development Contributed to Foreign Banks.
+\item<5<+-> Since German financial system is mainly bank-based and financial assets are stored in forms of deposits, generated independent variables are good proxies for financial development.
+\item<6<+-> Data gathered from \cite{DeutscheBundesbank}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Data (Main Explanatory Variables Calculation)}
+\begin{itemize}
+\item<1<+-> First, the mean of every three consecutive months is taken to obtain quarterly measured values.
+\item<2<+-> Then, after transforming the deposits into quarterly measured values the following formulas are used.
+\item<3<+-> \textbf{Overall Financial Development:}
+\begin{equation}
+fin\_dev\_all = \frac {(\text{deposits domestic} + \text{deposits foreign})} {\text{nominal GDP}}
+\end{equation}
+\item<4<+-> \textbf{Financial Development Contributed to Domestic Banks:}
+\begin{equation}
+fin\_dev\_db = \frac {\text{deposits domestic banks}}
+{\text{nominal GDP}}
+\end{equation}
+\item<5<+-> \textbf{Financial Development Contributed to Foreign Banks:}
+\begin{equation}
+ fin\_dev\_fb = \frac {\text{deposits foreign banks}}
+ {\text{nominal GDP}}
+\end{equation}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Data (Control Variables)}
+\begin{itemize}
+\item<1<+-> Several control variables are used:
+\item<2<+-> \textbf{Consumer Price Index, Population by Education Attainment Index, government expenditure as a share of GDP, dummy variable for the global financial crisis, Financial Stress Index, GDP per capita and share of agricultural sector in the GDP.}
+\item<3<+-> Data gathered from \cite{DeutscheBundesbank}, \cite{EuropeanCentralBank} and \cite{Eurostat}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Empirical Setup}
+\begin{itemize}
+\item<1<+-> To test the effect of financial development on income inequality through the labor market two models are used.
+\item<2<+-> \textbf{OLS regression model}
+\item<3<+-> \textbf{Time Fixed Effects Model}
+\item<4<+-> In both models lead for one year of all outcome variables is taken.
+\item<5<+-> Control variables stay constant for all models.
+\item<6<+-> The second model is a time fixed effect model where all time variant influence is absorbed on the annual level.
+\item<7<+-> Robustness Checks are done by taking the lead out of the outcome variables.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Empirical Setup (Identification)}
+\begin{itemize}
+\item<1<+-> The strategy to identify the causal effects of financial development on income inequality through the labor market is to observe whether there are any statistically significant effects on the labor cost percentage increase differences.
+\item<2<+-> The only way that financial development can have an effect on income inequality through the labor market is if the financial sector is large enough or the employees in this sector are paid extremely well.
+\item<3<+-> 19 $\%$ of the employees in the financial
+sector belong among the top 1 $\%$ earners and hence have an effect on the overall income distribution. \footnote{\cite{denk2015finance}}
+\item<4<+-> The focus in this project work is on the overall financial development in Germany, but the financial development variable is decomposed to observe how much domestic and foreign banks contribute to income inequality.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Results}
+\begin{itemize}
+\item<1<+-> Given that \textbf{scikit-learn} is used to fit both models, the missing values, "NaN's" are replaced with the mean value for each column of the respective variables.
+\item<2<+-> The replacement is done with a package of \textbf{scikit-learn}, called \textbf{SimpleImputer}.
+\item<3<+-> From the results, we can see that financial development has a positive effect on income inequality through the labor market.
+\item<4<+-> The second model is not fitted well, given that we only have 30 clusters, and according to the rule of thumb, we are supposed to have at least 50.
+\end{itemize}
+\end{frame}
 
 % Print black screen only in presentation mode for finishing up.
 \mode<beamer> {
@@ -91,8 +228,10 @@
 
 \begin{frame}[allowframebreaks]
     \frametitle{References}
+
     \renewcommand{\bibfont}{\normalfont\footnotesize}
     \printbibliography
+
 \end{frame}
 
 \end{document}

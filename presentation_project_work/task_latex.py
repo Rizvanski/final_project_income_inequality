@@ -1,10 +1,13 @@
 """Tasks for compiling the presentation of the project work."""
+
+### packages ###
 import shutil
 
 import pytask
 from financial_development_and_income_inequality.config import BLD, PAPER_DIR
 from pytask_latex import compilation_steps as cs
 
+### document used for compiling the pdf file ###
 document = "financial_development_and_income_inequality_pres"
 
 

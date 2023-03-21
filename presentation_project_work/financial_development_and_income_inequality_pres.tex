@@ -28,7 +28,6 @@
 \addbibresource{refs.bib}
 
 
-
 \hypersetup{colorlinks=true, linkcolor=black, anchorcolor=black, citecolor=black, filecolor=black, menucolor=black, runcolor=black, urlcolor=black}
 
 \setbeamertemplate{footline}[frame number]
@@ -242,6 +241,54 @@ sector belong among the top 1 $\%$ earners and hence have an effect on the overa
 \item<3<+-> From the results, we can see that financial development has a positive effect on income inequality through the labor market.
 \item<4<+-> The second model is not fitted well, given that we only have 30 clusters, and according to the rule of thumb, we are supposed to have at least 50.
 \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Results (OLS Model)}
+\resizebox{\linewidth}{!}{% Resize table to fit within \linewidth horizontally
+\begin{tabular}{*{27}{l}}
+\toprule
+& fin\_diff\_all\_lead & fin\_diff\_pc\_lead &fin\_diff\_peh\_lead \\
+\midrule
+\alert{fin\_dev\_all}   & -40.291&-48.298&-33.68 \\
+\alert{fin\_dev\_db}   & 64.978&75.83&51.267 \\
+\alert{fin\_dev\_fb} & -105.269&-124.127&-84.947 \\
+GDP\_nom  & -0.619&-0.662&-0.544 \\
+CPI  & -0.241&-2.212&1.542 \\
+gov\_cs   & 474.088&731.249&170.131 \\
+FSI & -56.185&-53.197&-39.658 \\
+GDP\_per\_cap & 72.927&91.608&48.815 \\
+agri.\_gdp & -67.172&-66.651&-60.203 \\
+educ\_att & -2.988&-3.377&-2.043 \\
+fin.crisis\_0708 & 26.473&21.465&27.241 \\
+R$^2$ & 0.759&0.717&0.739 \\
+N & 120&120&120 \\
+\bottomrule
+\end{tabular}}
+\end{frame}
+
+\begin{frame}
+\frametitle{Results (Time Fixed Effects Model)}
+\resizebox{\linewidth}{!}{% Resize table to fit within \linewidth horizontally
+\begin{tabular}{*{27}{l}}
+\toprule
+& fin\_diff\_all\_lead & fin\_diff\_pc\_lead &fin\_diff\_peh\_lead \\
+\midrule
+\alert{fin\_dev\_all}   & 7.94899e+12&8.49809e+12&7.18308e+12 \\
+\alert{fin\_dev\_db}   & -7.94899e+12&-8.49809e+12&-7.18308e+12 \\
+\alert{fin\_dev\_fb} & -7.94899e+12&-8.49809e+12&-7.18308e+12 \\
+GDP\_nom  & 2.13529&2.80877&1.47837 \\
+CPI  & -1.81727&2.38283&-5.49845 \\
+gov\_cs   & 1636.8&1770.66&1201.05 \\
+FSI & 63.8028&81.9081&52.5453 \\
+GDP\_per\_cap & -158.173&-199.259&-119.606 \\
+agri.\_gdp & 3.61593&6.66805&-0.732145 \\
+educ\_att & 0.124467&21.274&-17.286 \\
+fin.crisis\_0708 & 14.8966&13.3887&19.2163 \\
+R$^2$ & 0.961&0.95&0.955 \\
+N & 120&120&120 \\
+\bottomrule
+\end{tabular}}
 \end{frame}
 
 % Print black screen only in presentation mode for finishing up.

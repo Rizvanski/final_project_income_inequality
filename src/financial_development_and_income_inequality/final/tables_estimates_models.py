@@ -118,12 +118,16 @@ def fixed_effects_model_table(fixed_effects_estimates, row_names):
         for i in range(3)
     ]
     # creating a data frame for the baseline coefficients
-    df_fixed_baseline = (pd.DataFrame(np.squeeze(coeff_fixed_baseline))).T.rename(
-        columns={
-            0: "fin_dif_all_lead",
-            1: "fin_diff_pc_lead",
-            2: "fin_diff_peh_lead",
-        },
+    df_fixed_baseline = (
+        (pd.DataFrame(np.squeeze(coeff_fixed_baseline)))
+        .T.rename(
+            columns={
+                0: "fin_dif_all_lead",
+                1: "fin_diff_pc_lead",
+                2: "fin_diff_peh_lead",
+            },
+        )
+        .round(3)
     )
     # adding r-squared value and number of observations
     df_fixed_baseline.loc["R^2"] = np.round(r_squared_fixed_baseline, 3)
@@ -164,8 +168,12 @@ def fixed_effect_modeL_robust_table(fixed_effects_estimates, row_names):
         for i in range(3)
     ]
     # creating a data frame for the robustness checks coefficients
-    df_fixed_robust = (pd.DataFrame(np.squeeze(coeff_fixed_robust))).T.rename(
-        columns={0: "fin_dif_all", 1: "fin_diff_pc", 2: "fin_diff_peh"},
+    df_fixed_robust = (
+        (pd.DataFrame(np.squeeze(coeff_fixed_robust)))
+        .T.rename(
+            columns={0: "fin_dif_all", 1: "fin_diff_pc", 2: "fin_diff_peh"},
+        )
+        .round(3)
     )
     # adding r-squared value and number of observations
     df_fixed_robust.loc["R^2"] = np.round(r_squared_fixed_robust, 3)

@@ -2,6 +2,7 @@
 name: final-project
 channels:
   - conda-forge
+  - nodefaults
 
 dependencies:
   - conda-lock

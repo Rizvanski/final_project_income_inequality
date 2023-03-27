@@ -4,7 +4,6 @@ from pathlib import Path
 SRC = Path(__file__).parent.resolve()
 BLD = SRC.joinpath("..", "..", "bld").resolve()
 
-TEST_DIR = SRC.joinpath("..", "..", "tests").resolve()
 PAPER_DIR = SRC.joinpath("..", "..", "presentation_project_work").resolve()
 
-__all__ = ["BLD", "SRC", "TEST_DIR"]
+__all__ = ["BLD", "SRC"]

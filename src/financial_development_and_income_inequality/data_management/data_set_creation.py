@@ -1,5 +1,8 @@
 ####################################### Data Set Creation #######################################
 
+### these functions are used for creating the initial data set using the initial ###
+### csv and excel data files located in the data_initial_files folder ###
+
 ### data_dir indicates the directory where the initial data files are located ###
 
 ### packages ###

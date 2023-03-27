@@ -1,8 +1,8 @@
 # Financial Development and Income Inequality
 
-### Effective Programming Practices for Economists
+### Effective Programming Practices for Economists Final Project
 
-### University of Bonn
+### University of Bonn, WS 22/23
 
 ### Author
 
@@ -70,11 +70,12 @@ the root folder of the project.
 ### Project Structure
 
 This project was created with [cookiecutter](https://github.com/audreyr/cookiecutter)
-and the <https://github.com/OpenSourceEconomics/econ-project-templates>. All of the
-source code is contained in the 'src' folder, while the output is generated in the 'bld'
-folder. In addition, there is the folder 'presentation_project_work', where the latex
-file is compiled and 'tests', where there are several tests for the functions that
-create and apply the data.
+and the
+[econ-project-templates](https://github.com/OpenSourceEconomics/econ-project-templates).
+All of the source code is contained in the 'src' folder, while the output is generated
+in the 'bld' folder. In addition, there is the folder 'presentation_project_work', where
+the latex file is compiled and 'tests', where there are several tests for the functions
+that create and apply the data.
 
 The 'src' folder contains several subfolders where the data management, analysis and
 creation of graphs and tables is performed. Here, the following subfolders can be found:

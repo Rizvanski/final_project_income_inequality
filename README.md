@@ -2,7 +2,7 @@
 
 ### Effective Programming Practices for Economists
 
-### University of Bonn Winter Semester 2022-2023
+### University of Bonn
 
 ### Author
 
@@ -70,23 +70,25 @@ the root folder of the project.
 ### Project Structure
 
 This project was created with [cookiecutter](https://github.com/audreyr/cookiecutter)
-and the \[econ-project-templates\](https://github.com/OpenSourceEconomics
-econ-project-templates). All of the source code is contained in the 'src' folder, while
-the output is generated in the 'bld' folder. In addition, there is the folder
-'presentation_project_work', where the latex file is compiled and 'tests', where there
-are several tests for the functions that create and apply the data.
+and the <https://github.com/OpenSourceEconomics/econ-project-templates>. All of the
+source code is contained in the 'src' folder, while the output is generated in the 'bld'
+folder. In addition, there is the folder 'presentation_project_work', where the latex
+file is compiled and 'tests', where there are several tests for the functions that
+create and apply the data.
 
 The 'src' folder contains several subfolders where the data management, analysis and
 creation of graphs and tables is performed. Here, the following subfolders can be found:
 
-- 'analysis': includes code for applying the OLS and Time Fixed Effects models
-- 'data': contains the initial data files from which the data set is created
+- 'analysis': includes code for applying the OLS and Time Fixed Effects models.
+- 'data': contains the initial data files from which the data set is created.
 - 'data_management': includes code for creating the initial and final versions of the
-  data sets
-- 'final': contains code for generating graphs and tables of the estimates The 'bld'
-  folder contains all of the output generated with the code in the 'src' folder. Here,
-  the following subfolders can be found:
+  data sets.
+- 'final': contains code for generating graphs and tables of the estimates.
+
+The 'bld' folder contains all of the output generated with the code in the 'src' folder.
+Here, the following subfolders can be found:
+
 - 'latex": includes the compiled presentation for the project work and tables converted
-  into latex form
+  into latex form.
 - 'python': contains the generated data sets, estimates of the models, figures and
-  tables
+  tables.

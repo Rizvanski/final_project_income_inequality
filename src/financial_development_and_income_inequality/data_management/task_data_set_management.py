@@ -8,7 +8,7 @@ import pandas as pd
 import pytask
 
 ### folders and function used for creating data set ###
-from financial_development_and_income_inequality.config import BLD, SRC
+from financial_development_and_income_inequality.config import BLD
 from financial_development_and_income_inequality.data_management.data_set_management import (
     generate_variables,
 )
@@ -30,7 +30,7 @@ target_col = "fin"
 ### pytask usage ###
 
 # input directory
-@pytask.mark.depends_on(SRC / "data" / "initial_data_set.pkl")
+@pytask.mark.depends_on(BLD / "python" / "data" / "initial_data_set.pkl")
 
 # output directory
 @pytask.mark.produces(

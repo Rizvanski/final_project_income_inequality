@@ -16,12 +16,9 @@ from financial_development_and_income_inequality.data_management.data_set_creati
 @pytask.mark.depends_on(SRC / "data" / "data_initial_files/")
 
 # output directory
-@pytask.mark.produces(
-    [
-        BLD / "python" / "data" / "initial_data_set.pkl",
-        SRC / "data" / "initial_data_set.pkl",
-    ],
-)
+@pytask.mark.produces(BLD / "python" / "data" / "initial_data_set.pkl")
+
+# function
 def task_create_initial_data_set(depends_on, produces):
     """Creates and stores the initial data set, using the function data_creation.
 
@@ -40,5 +37,4 @@ def task_create_initial_data_set(depends_on, produces):
     initial_data_set = data_creation(dataframe, data_dir=depends_on)
 
     # exporting the data in the specified folders
-    initial_data_set.to_pickle(produces[0])
-    initial_data_set.to_pickle(produces[1])
+    initial_data_set.to_pickle(produces)

@@ -53,7 +53,7 @@ def task_generate_tables(depends_on, produces):
 
     Parameters:
     depends_on (pathlib.Path): The paths to the directory where the estimates from both models are located.
-    produces (pathlib.Path): The paths to the directory where tables are stored in a "txt" format.
+    produces (pathlib.Path): The paths to the directory where tables are stored in an "csv" format.
 
     Returns:
     None

@@ -68,7 +68,7 @@ def indicator_variables(dataframe):
 
 # function that loads csv data and selects exact rows and columns
 def load_csv_data_labor_costs(filename):
-    """Loads data from a csv file and returns it as a numeric list (float).
+    """Loads data from an csv file and returns it as a numeric list (float).
 
     Parameters:
     filename (str): The name of the csv file (without the ".csv" extension).
@@ -122,7 +122,7 @@ def store_labor_costs(dataframe, data_dir):
 
 # function that loads data for deposits and calculates the mean
 def load_csv_data_deposits(file_name, row_range, target_col):
-    """Processes a CSV file and returns the mean value of every 3 elements.
+    """Processes an CSV file and returns the mean value of every 3 elements.
 
     Parameters:
     file_name (str): The path and name of the CSV file to be processed.

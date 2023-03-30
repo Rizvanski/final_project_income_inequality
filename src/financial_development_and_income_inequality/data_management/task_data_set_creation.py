@@ -38,7 +38,7 @@ def task_create_initial_data_set(depends_on, produces):
     # empty DataFrame
     dataframe = pd.DataFrame()
 
-    # importing the function from data_set_creation.py
+    # creating the initial data set with the function data_creation
     initial_data_set = data_creation(dataframe, data_dir=depends_on)
 
     # exporting the data in the specified folders

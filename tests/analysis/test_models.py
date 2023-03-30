@@ -50,6 +50,9 @@ def final_data():
 
 # test for expected sign of OLS model
 def test_expected_sign_ols(final_data):
+    """
+    Tests whether the coefficient of financial development contributed to domestic banks is positive.
+    """
     # OLS model
     ols_model_results = run_ols_model(final_data)
     # extracting the fin_dev_db coefficient
@@ -65,6 +68,10 @@ def test_expected_sign_ols(final_data):
 # marking the test with a decorator
 @pytest.mark.xfail()
 def test_expected_sign_fixed_effects(final_data):
+    """
+    Tests whether the coefficient of financial development contributed to domestic banks is positive.
+    The coefficient is expected to be faulty and hence this test is intentionally marked as a failed test.
+    """
     # time fixed effects model
     fixed_effects_results = run_fixed_effects_model(final_data)
     # extracting the fin_dev_db coefficient
@@ -80,6 +87,10 @@ def test_expected_sign_fixed_effects(final_data):
 
 # test comparing the results of the ols_model coefficients
 def test_compare_coeff(final_data):
+    """
+    Tests whether the coefficient for financial development contributed to domestic banks is positive in
+    both models (OLS and time fixed effects).
+    """
     # OLS model baseline regression
     ols_baseline = run_ols_model(final_data)
     # OLS model robustness checks

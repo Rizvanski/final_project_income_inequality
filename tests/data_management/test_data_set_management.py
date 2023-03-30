@@ -1,6 +1,6 @@
 """Tests for data set management where the explanatory and outcome variables are generated."""
 
-### these test are conducted on the functions meant ###
+### these test are conducted on the functions used ###
 ### for generating the explanatory and outcome variables ###
 
 ### packages ###

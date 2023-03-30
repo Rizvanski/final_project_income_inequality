@@ -46,7 +46,7 @@ def generate_variables(
 ### labor cost percentage increase differences between financial sector  ###
 ### and other sectors in the economy                                     ###
 
-### additionally the mean of labor costs for production and construction is calculated ###
+### additionally the mean of labor costs for all sectors and production and construction sector is calculated ###
 
 # function for mean calculation
 def mean_calculation(df):
@@ -64,6 +64,8 @@ def mean_calculation(df):
     df["mean_pr_cst"] = df.loc[:, ["lcph_prod", "lcph_const"]].mean(axis=1)
     return df
 
+
+### percentage increase calculations based on the first quarter of 1991 ###
 
 ### finance sector, all other sectors, production and construction sector,           ###
 ### education and health sector                                                      ###
@@ -93,7 +95,7 @@ def percentage_increase_calculation(df, sectors_percentage_increase_calculation)
 
 
 ### Finally, we generate the outcome variables by taking the differences of       ###
-### the labor cost percentage increases between financial sector and the other    ###
+### the labor cost percentage increases between financial sector and the other sectors   ###
 
 # function for percentage increase difference calculation
 def percentage_increase_differences(df, sectors_percentage_increase_diff, target_col):

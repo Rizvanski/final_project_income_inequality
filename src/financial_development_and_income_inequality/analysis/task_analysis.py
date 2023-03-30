@@ -1,5 +1,5 @@
-"""Tasks used for saving the results from the core analyses of the OLS_model and time
-fixed effects model.
+"""Tasks used for saving the results from the analyses done with the OLS and time
+fixed effects models.
 """
 
 ### packages ###
